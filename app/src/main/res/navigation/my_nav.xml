@@ -55,4 +55,10 @@
             android:name="currentItem"
             app:argType="com.example.todoapp.data.models.ToDoData" />
     </fragment>
+    <activity
+        android:id="@+id/splashActivity"
+        android:name="com.example.todoapp.SplashActivity"
+        android:label="activity_splash"
+        app:action="@string/title"
+        tools:layout="@layout/activity_splash" />
 </navigation>

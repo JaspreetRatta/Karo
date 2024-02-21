@@ -48,9 +48,9 @@
 
         <EditText
             android:id="@+id/current_description_et"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
+            android:layout_width="378dp"
+            android:layout_height="212dp"
+            android:layout_marginTop="24dp"
             android:background="@drawable/custom_input"
             android:ems="10"
             android:gravity="top|start"
@@ -60,11 +60,34 @@
             android:paddingTop="16dp"
             android:paddingEnd="24dp"
             android:text="@{args.currentItem.description}"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/current_priorities_spinner" />
+
+
+        <Button
+            android:id="@+id/chooseTimeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="76dp"
+            android:background="@drawable/app_widget_inner_view_background"
+            android:text="select Time"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/current_description_et" />
+
+        <Button
+            android:id="@+id/btnDatePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="76dp"
+            android:layout_marginEnd="48dp"
+            android:text="Select Date"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/current_description_et" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

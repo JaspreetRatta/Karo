@@ -39,9 +39,9 @@
 
     <EditText
         android:id="@+id/description_et"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="366dp"
+        android:layout_height="165dp"
+        android:layout_marginTop="20dp"
         android:background="@android:color/transparent"
         android:ems="10"
         android:gravity="top|start"
@@ -50,9 +50,32 @@
         android:paddingStart="24dp"
         android:paddingTop="16dp"
         android:paddingEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/priorities_spinner" />
+
+    <Button
+        android:id="@+id/chooseTimeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:background="@drawable/app_widget_inner_view_background"
+        android:text="select Time"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.054"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_et" />
+
+    <Button
+        android:id="@+id/btnDatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="8dp"
+        android:text="Select Date"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/description_et" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

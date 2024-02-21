@@ -1,0 +1,25 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/Widget.Karo.AppWidget.Container"
+    android:theme="@style/AppTheme.AppWidgetContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/appwidget_text"
+        style="@style/Widget.Karo.AppWidget.InnerView"
+        android:layout_width="221dp"
+        android:layout_height="104dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:contentDescription="@string/appwidget_text"
+        android:initialKeyguardLayout="@layout/fragment_list"
+        android:initialLayout="@layout/fragment_list"
+        android:previewLayout="@layout/fragment_list"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" />
+</RelativeLayout>

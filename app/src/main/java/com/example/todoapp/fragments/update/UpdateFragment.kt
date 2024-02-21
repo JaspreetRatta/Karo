@@ -107,3 +107,7 @@ class UpdateFragment : Fragment() {
         _binding = null
     }
 }
+
+class FragmentUpdateBinding {
+
+}

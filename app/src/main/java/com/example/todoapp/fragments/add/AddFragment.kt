@@ -1,7 +1,11 @@
 package com.example.todoapp.fragments.add
 
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -14,6 +18,8 @@ import com.example.todoapp.data.models.ToDoData
 import com.example.todoapp.data.viewmodel.ToDoViewModel
 import com.example.todoapp.databinding.FragmentAddBinding
 import com.example.todoapp.fragments.SharedViewModel
+import java.text.SimpleDateFormat
+import java.util.*
 
 class AddFragment : Fragment() {
 
@@ -21,6 +27,11 @@ class AddFragment : Fragment() {
     private val mSharedViewModel: SharedViewModel by viewModels()
 
     private var _binding: FragmentAddBinding? = null
+    private lateinit var btnDatePicker: Button
+    private lateinit var tvSelectedDate: TextView
+    private lateinit var btnPickTime: Button
+    private lateinit var tvSelectedTime: TextView
+    private val calendar = Calendar.getInstance()
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -53,12 +64,63 @@ class AddFragment : Fragment() {
                 return true
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
+
+        btnDatePicker = binding.btnDatePicker
+        tvSelectedDate = binding.btnDatePicker
+        btnPickTime = binding.chooseTimeButton
+        tvSelectedTime = binding.chooseTimeButton
+
+        btnDatePicker.setOnClickListener {
+            showDatePicker()
+        }
+
+        btnPickTime.setOnClickListener {
+            showTimePicker()
+        }
+    }
+
+    private fun showDatePicker() {
+        val datePickerDialog = DatePickerDialog(
+            requireContext(), { _, year: Int, monthOfYear: Int, dayOfMonth: Int ->
+                val selectedDate = Calendar.getInstance()
+                selectedDate.set(year, monthOfYear, dayOfMonth)
+                val dateFormat = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
+                val formattedDate = dateFormat.format(selectedDate.time)
+                tvSelectedDate.text = "Selected Date: $formattedDate"
+            },
+            calendar.get(Calendar.YEAR),
+            calendar.get(Calendar.MONTH),
+            calendar.get(Calendar.DAY_OF_MONTH)
+        )
+        datePickerDialog.show()
+    }
+
+    private fun showTimePicker() {
+        val cal = Calendar.getInstance()
+        val timeSetListener = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
+            cal.set(Calendar.HOUR_OF_DAY, hour)
+            cal.set(Calendar.MINUTE, minute)
+            tvSelectedTime.text = SimpleDateFormat("HH:mm").format(cal.time)
+        }
+        TimePickerDialog(
+            requireContext(),
+            timeSetListener,
+            cal.get(Calendar.HOUR_OF_DAY),
+            cal.get(Calendar.MINUTE),
+            true
+        ).show()
     }
 
     private fun insertDataToDb() {
         val mTitle = binding.titleEt.text.toString()
         val mPriority = binding.prioritiesSpinner.selectedItem.toString()
         val mDescription = binding.descriptionEt.text.toString()
+        val mTime = binding.chooseTimeButton.text.toString()
+        val mDate = binding.btnDatePicker.text.toString()
+
+
+
+
 
         val validation = mSharedViewModel.verifyDataFromUser(mTitle, mDescription)
         if (validation) {
@@ -68,6 +130,9 @@ class AddFragment : Fragment() {
                 mTitle,
                 mSharedViewModel.parsePriority(mPriority),
                 mDescription
+
+
+
             )
             mToDoViewModel.insertData(newData)
             Toast.makeText(requireContext(), "Successfully added!", Toast.LENGTH_SHORT).show()
@@ -79,8 +144,11 @@ class AddFragment : Fragment() {
         }
     }
 
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
 }
+
